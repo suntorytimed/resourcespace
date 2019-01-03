@@ -34,3 +34,4 @@ RUN svn co https://svn.resourcespace.com/svn/rs/releases/8.6 .
 RUN mkdir filestore
 RUN chmod 777 filestore
 RUN chmod -R 777 include
+CMD apachectl -D FOREGROUND
