@@ -14,10 +14,11 @@ In this example I use the pre-existing nginx proxy from my Nextcloud instance wh
         name: fpm_proxy-tier
     backend:
   
-  # docker volume for the database to make it stateful
-  # can be replaced with a local mount instead
+  # for some reason using a local mountpoint results in an HTTP error 500
   volumes:
     mariadb:
+    include:
+    filestore:
   
   services:
     resourcespace:
@@ -26,10 +27,9 @@ In this example I use the pre-existing nginx proxy from my Nextcloud instance wh
       # links resourcespace to mariadb container and makes it accessible via the URL mariadb
       depends_on:
         - mariadb
-      # local mounts to make it stateful
       volumes:
-        - ./include:/var/www/resourcespace/include
-        - ./filestore:/var/www/resourcespace/filestore
+        - include:/var/www/resourcespace/include
+        - filestore:/var/www/resourcespace/filestore
       # variables for setting up https via the Let'sEncrypt companion
       environment:
         - HOSTNAME=dam.example.com
@@ -51,7 +51,6 @@ In this example I use the pre-existing nginx proxy from my Nextcloud instance wh
       # env file containing the db configuration
       env_file:
         - db.env
-      # using a docker volume instead of a local mount
       volumes:
         - mariadb:/var/lib/mysql
       # only accesible in private network
