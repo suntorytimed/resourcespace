@@ -1,5 +1,11 @@
 # resourcespace-docker
 
+[![Docker Pulls](https://img.shields.io/docker/pulls/suntorytimed/resourcespace?style=flat-square)](https://hub.docker.com/r/suntorytimed/resourcespace)
+
+A docker image for ResourceSpace based on Ubuntu LTS including OpenCV and php7.
+
+Please report any issues on GitHub: https://github.com/suntorytimed/resourcespace-docker/issues
+
 ## docker-compose example
 
 In this example I use the pre-existing nginx proxy from my Nextcloud instance which also includes a Let'sEncrypt compantion to enforce https.
