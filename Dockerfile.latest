@@ -40,7 +40,7 @@ ADD cronjob /etc/cron.daily/resourcespace
 
 WORKDIR /var/www/html
 RUN rm index.html
-RUN svn co https://svn.resourcespace.com/svn/rs/releases/9.2 .
+RUN svn co https://svn.resourcespace.com/svn/rs/releases/9.3 .
 RUN mkdir filestore
 RUN chmod 777 filestore
 RUN chmod -R 777 include/
