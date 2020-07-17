@@ -2,9 +2,11 @@
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/suntorytimed/resourcespace?style=flat-square)](https://hub.docker.com/r/suntorytimed/resourcespace)
 
-A docker image for ResourceSpace based on Ubuntu LTS including OpenCV and php7.
+A docker image for ResourceSpace based on Ubuntu 18.04 LTS including OpenCV and php7.
 
 Please report any issues on GitHub: https://github.com/suntorytimed/resourcespace-docker/issues
+
+It is based on 18.04 LTS and not 20.04 LTS as ResourceSpace requires xpdf, which has been removed from Ubuntu 20.04 and replaced by poppler.
 
 ## docker-compose example
 
