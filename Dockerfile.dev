@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     subversion \
     ghostscript \
     antiword \
+    poppler-utils \
     libimage-exiftool-perl \
     cron \
     postfix \
