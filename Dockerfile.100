@@ -14,8 +14,11 @@ RUN apt-get update && apt-get install -y \
     postfix \
     wget \
     php \
+    php-apcu \
+    php-curl \
     php-dev \
     php-gd \
+    php-intl \
     php-mysqlnd \
     php-mbstring \
     php-zip \
