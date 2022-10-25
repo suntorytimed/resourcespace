@@ -2,15 +2,13 @@
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/suntorytimed/resourcespace?style=flat-square)](https://hub.docker.com/r/suntorytimed/resourcespace)
 
-A docker image for ResourceSpace based on Ubuntu 20.04 LTS including OpenCV, poppler and php7.4. Older versions of ResourceSpace (9.2 and 9.3) are still based on 18.04 LTS and don't include poppler but xpdf. They also use php7.2.
+A docker image for ResourceSpace based on Ubuntu:latest container including OpenCV, poppler and php8.1.
 
 Please report any issues on GitHub: https://github.com/suntorytimed/resourcespace-docker/issues
 
-Starting with ResourceSpace 9.4 the containers are going to be based on Ubuntu:latest (currently 20.04 LTS), as I tested poppler as a proper xpdf replacement - which isn't shipped in 20.04 anymore - in ResourceSpace.
-
 ## docker-compose example
 
-In this example I use the pre-existing nginx proxy from my Nextcloud instance which also includes a Let'sEncrypt compantion to enforce https.
+In this example I use the pre-existing nginx proxy of my Nextcloud instance, which also includes a Let'sEncrypt companion to enforce https.
 
 ```Dockerfile
 version: "2"
