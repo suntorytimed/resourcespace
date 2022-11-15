@@ -94,14 +94,20 @@ jobs:
             ghcr.io/${{ env.IMAGE_NAME }}:10.0
           labels: ${{ steps.meta.outputs.labels }}
 
+      - name: Write signing key to disk
+        run: 'echo "$KEY" > cosign.key'
+        shell: bash
+        env:
+          KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
+
       # Sign the resulting Docker image digest except on PRs.
       # https://github.com/sigstore/cosign
       - name: Sign the published Docker image
         if: ${{ github.event_name != 'pull_request' }}
         env:
-          COSIGN_EXPERIMENTAL: "true"
+          COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
         # This step uses the identity token to provision an ephemeral certificate
         # against the sigstore community Fulcio instance.
         run: |
-          echo "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest" | xargs -I {} cosign sign {}@${{ steps.build-and-push.outputs.digest }} && echo "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:10.0" | xargs -I {} cosign sign {}@${{ steps.build-and-push.outputs.digest }}
-          echo "ghcr.io/${{ env.IMAGE_NAME }}:latest" | xargs -I {} cosign sign {}@${{ steps.build-and-push.outputs.digest }} && echo "ghcr.io/${{ env.IMAGE_NAME }}:10.0" | xargs -I {} cosign sign {}@${{ steps.build-and-push.outputs.digest }}
+          echo "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest" | xargs -I {} cosign sign --key cosign.key {}@${{ steps.build-and-push.outputs.digest }} && echo "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:10.0" | xargs -I {} cosign sign {}@${{ steps.build-and-push.outputs.digest }}
+          echo "ghcr.io/${{ env.IMAGE_NAME }}:latest" | xargs -I {} cosign sign --key cosign.key {}@${{ steps.build-and-push.outputs.digest }} && echo "ghcr.io/${{ env.IMAGE_NAME }}:10.0" | xargs -I {} cosign sign {}@${{ steps.build-and-push.outputs.digest }}
