@@ -112,5 +112,7 @@ jobs:
         # This step uses the identity token to provision an ephemeral certificate
         # against the sigstore community Fulcio instance.
         run: |
-          echo "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest" | xargs -I {} cosign sign --key cosign.key {}@${{ steps.build-and-push.outputs.digest }} && echo "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:10.0" | xargs -I {} cosign sign {}@${{ steps.build-and-push.outputs.digest }}
-          echo "ghcr.io/${{ env.IMAGE_NAME }}:latest" | xargs -I {} cosign sign --key cosign.key {}@${{ steps.build-and-push.outputs.digest }} && echo "ghcr.io/${{ env.IMAGE_NAME }}:10.0" | xargs -I {} cosign sign {}@${{ steps.build-and-push.outputs.digest }}
+          cosign sign --key cosign.key ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest@${{ steps.build-and-push.outputs.digest }}
+          cosign sign --key cosign.key ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:10.0@${{ steps.build-and-push.outputs.digest }}
+          cosign sign --key cosign.key ghcr.io/${{ env.IMAGE_NAME }}:latest@${{ steps.build-and-push.outputs.digest }}
+          cosign sign --key cosign.key ghcr.io/${{ env.IMAGE_NAME }}:10.0@${{ steps.build-and-push.outputs.digest }}
