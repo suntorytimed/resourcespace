@@ -21,9 +21,6 @@ env:
 
 jobs:
   build:
-    strategy:
-      matrix:
-        architecture: [linux/amd64,linux/arm64,linux/arm/v7,linux/s390x,linux/ppc64le,linux/riscv64]
 
     runs-on: ubuntu-latest
     permissions:
@@ -88,7 +85,7 @@ jobs:
         uses: docker/build-push-action@ac9327eae2b366085ac7f6a2d02df8aa8ead720a
         with:
           context: .
-          platforms: ${{ matrix.architecture }}
+          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/s390x,linux/ppc64le,linux/riscv64
           push: ${{ github.event_name != 'pull_request' }}
           tags: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
