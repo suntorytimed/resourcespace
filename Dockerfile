@@ -1,5 +1,5 @@
 FROM ubuntu:latest
-MAINTAINER Stefan Weiberg <sweiberg@suse.com>
+MAINTAINER Stefan Weiberg <rs@hibiki.eu>
 ENV DEBIAN_FRONTEND="noninteractive"
 RUN apt-get update && apt-get install -y \
     vim \
