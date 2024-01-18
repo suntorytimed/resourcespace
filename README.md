@@ -1,3 +1,18 @@
+# Announcement
+As I don't have time to continue maintaining this container and resolving issues, I will have to announce the EOL of this container with the next version 10.3 of ResourceSpace.
+
+I never expected others to use this container for their deployments of ResourceSpace. For myself, it was just a side project to run my instance in a container instead of bare metal. But I stopped using ResourceSpace quite some time ago and meanwhile switched to using PhotoPrism® for several reasons:
+
+- actual development community fostering collaboration and not just one company maintaining the project on an SVN server
+- solid and more modern code base
+- transparent roadmap, issues and communication channels
+- AI functionality better suited for personal use
+- intuitive UI
+
+And since PhotoPrism can offer me the one killer feature I began using ResourceSpace for (stacking different versions of the same photo with JPEG and RAW sharing one entity) I don't see a benefit in ResourceSpace for my personal use case.
+
+If anybody wants to step up and take over the maintenance, please do so. As with every Open Source project you are free to fork and continue using the codebase. I will put the repository on archived after the release of the last 10.3 container.
+
 # resourcespace-docker
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/suntorytimed/resourcespace?style=flat-square)](https://hub.docker.com/r/suntorytimed/resourcespace)
